@@ -1,0 +1,651 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "health-check",
+      "description": "Health Check"
+    },
+    {
+      "name": "hint-controller",
+      "description": "Hint Controller"
+    },
+    {
+      "name": "message-hint-controller",
+      "description": "Message Hint Controller"
+    },
+    {
+      "name": "photo-hint-controller",
+      "description": "Photo Hint Controller"
+    }
+  ],
+  "paths": {
+    "/heartbeat": {
+      "get": {
+        "tags": [
+          "health-check"
+        ],
+        "summary": "heartbeat",
+        "operationId": "heartbeatUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/hints": {
+      "get": {
+        "tags": [
+          "hint-controller"
+        ],
+        "summary": "getHints",
+        "operationId": "getHintsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "epsDistance",
+            "in": "query",
+            "description": "epsDistance",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "x1",
+            "in": "query",
+            "description": "x1",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "x2",
+            "in": "query",
+            "description": "x2",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "y1",
+            "in": "query",
+            "description": "y1",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "y2",
+            "in": "query",
+            "description": "y2",
+            "required": true,
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«List«HintCluster»»"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/messagehint": {
+      "post": {
+        "tags": [
+          "message-hint-controller"
+        ],
+        "summary": "addMessageHint",
+        "operationId": "addMessageHintUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "messageHint",
+            "description": "messageHint",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MessageHint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«MessageHint»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "message-hint-controller"
+        ],
+        "summary": "updateMessageHint",
+        "operationId": "updateMessageHintUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "messageHint",
+            "description": "messageHint",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MessageHint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«MessageHint»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/messagehint/{id}": {
+      "get": {
+        "tags": [
+          "message-hint-controller"
+        ],
+        "summary": "getMessageHint",
+        "operationId": "getMessageHintUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«MessageHint»"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "message-hint-controller"
+        ],
+        "summary": "deleteMessageHint",
+        "operationId": "deleteMessageHintUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/photohint": {
+      "post": {
+        "tags": [
+          "photo-hint-controller"
+        ],
+        "summary": "addPhotoHint",
+        "operationId": "addPhotoHintUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "photoHint",
+            "description": "photoHint",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PhotoHint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«PhotoHint»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "photo-hint-controller"
+        ],
+        "summary": "updatePhotoHint",
+        "operationId": "updatePhotoHintUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "photoHint",
+            "description": "photoHint",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PhotoHint"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«PhotoHint»"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/photohint/{id}": {
+      "get": {
+        "tags": [
+          "photo-hint-controller"
+        ],
+        "summary": "getPhotoHint",
+        "operationId": "getPhotoHintUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«PhotoHint»"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "photo-hint-controller"
+        ],
+        "summary": "deletePhotoHint",
+        "operationId": "deletePhotoHintUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapper«boolean»"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Circle": {
+      "type": "object",
+      "properties": {
+        "center": {
+          "$ref": "#/definitions/Location"
+        },
+        "radius": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "Circle"
+    },
+    "Hint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "$ref": "#/definitions/Point"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Message",
+            "Photo"
+          ],
+          "example": "Message"
+        }
+      },
+      "title": "Hint"
+    },
+    "HintCluster": {
+      "type": "object",
+      "properties": {
+        "circle": {
+          "$ref": "#/definitions/Circle"
+        },
+        "hints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Hint"
+          }
+        },
+        "numberOfHints": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "HintCluster"
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "format": "double"
+        },
+        "y": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "Location"
+    },
+    "MessageHint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "$ref": "#/definitions/Point"
+        },
+        "message": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Message",
+            "Photo"
+          ],
+          "example": "Message"
+        }
+      },
+      "title": "MessageHint"
+    },
+    "PhotoHint": {
+      "type": "object",
+      "properties": {
+        "base64photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "location": {
+          "$ref": "#/definitions/Point"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Unknown",
+            "Message",
+            "Photo"
+          ],
+          "example": "Photo"
+        }
+      },
+      "title": "PhotoHint"
+    },
+    "Point": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "example": "Point"
+        },
+        "cordinates": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "example": [
+            5.2,
+            10.2
+          ]
+        }
+      },
+      "title": "Point"
+    },
+    "ResponseWrapper": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseWrapper"
+    },
+    "ResponseWrapper«List«HintCluster»»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HintCluster"
+          }
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseWrapper«List«HintCluster»»"
+    },
+    "ResponseWrapper«MessageHint»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MessageHint"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseWrapper«MessageHint»"
+    },
+    "ResponseWrapper«PhotoHint»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/PhotoHint"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseWrapper«PhotoHint»"
+    },
+    "ResponseWrapper«boolean»": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "boolean"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ResponseWrapper«boolean»"
+    },
+    "Type": {
+      "type": "object",
+      "title": "Type"
+    }
+  }
+}
