@@ -2,7 +2,7 @@
 This project provides RESTful API to serve an application such that users share road conditions and photos.
 There is mockup on marvel for this application: https://marvelapp.com/306hd0b
 
-<img src="http://i66.tinypic.com/2sae6c9.png" width="200">
+<img src="http://gdurl.com/ZvyD" width="200">
 
 ## Tech/Framework Used
 - Spring Boot
